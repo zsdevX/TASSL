@@ -4,7 +4,7 @@
 OpenSSL是一套件开放源代码的安全套接字密码学基础库，囊括主要的密码算法、常用的密钥和证书封装管理功能及SSL/TLS协议，并提供丰富的API，以供应用程序开发、测试或其它目的使用。它广泛地集成在各种类型的操作系统中，作为其基础组件之一，深爱广大IT爱好者的喜爱。即使用某些操作系统没有将其集成为组件，通过源代码下载，也是十分轻松地构建OpenSSL的开发及应用环境。
  
 尽管OpenSSL的功能十分强大且丰富，然而对于中国商用密码体系的算法及相关应用来说，它距离我们还是十分遥远，因为它仅仅包含的国际通用的密码算法、认证体系及相关协议，却没有将中国商用密码体系中的公开算法SM2、SM3、SM4及祖冲之流密码算法纳入其中，也不支持双证书体系的应用及相关协议。这对于推广及研究中国商用密码体系的广大密码爱好者来说，却是十分无奈的事情。
- 国内也存在着不少密码界同仁，尝试着将OpenSSL国密化，但其大多都局限于公司内部交流使用，这对于国密SSL的推广不利。针对这种现状，北京江南天安公司经过长时间的研究分析，于2016年上半年推出天安版国密OpenSSL，也就是TaSSL，解决了中国商用密码体系无法构建基于OpenSSL应用的实际问题。现以源码的形式提供出来，供大家参考使用，为促进国密的推广和应用贡献自己的一份力量。
+ 国内也存在着不少密码界同仁，尝试着将OpenSSL国密化，但其大多都局限于公司内部交流使用，这对于国密SSL的推广不利。针对这种现状，北京江南天安公司经过长时间的研究分析，于2017年上半年推出天安版国密OpenSSL，也就是TaSSL，解决了中国商用密码体系无法构建基于OpenSSL应用的实际问题。现以源码的形式提供出来，供大家参考使用，为促进国密的推广和应用贡献自己的一份力量。
 
 ### (一)天安TaSSL的功能特点
 
@@ -28,7 +28,7 @@ OpenSSL是一套件开放源代码的安全套接字密码学基础库，囊括�
 
 ### (二)天安TaSSL添加的及完善的API
 
-#### 1.Crypto相关的API
+#### Crypto相关的API
 1. EVP_sm3()：取摘要算法SM3算法的EVP调用函数指针；
 2. EVP_sm4()、EVP_sm4_cbc()：取SM4对称加密算法CBC模式的EVP调用的函数指针；
 3. EVP_sm4_cfb()：取SM4对称加密算法CFB模式的EVP调用的函数指针；
@@ -53,7 +53,7 @@ OpenSSL是一套件开放源代码的安全套接字密码学基础库，囊括�
 22. sm2_encrypt()、sm2_decrypt()、sm2_do_sign()、sm2_do_verify()、i2d_sm2_enc()、d2i_sm2_enc()：SM2算法的签名、验签、加密、解密相关函数；
 23. EVP_sm1()、EVP_sm1_cbc()、EVP_sm1_cfb()、EVP_sm1_ecb()、EVP_sm1_ofb()：预留的SM1接口函数，用于使用引擎实现SM1算法。
 
-#### 2.ssl相关的API
+#### ssl相关的API
 1. CNTLS_client_method()：获取国密TLSv1.1标准协议的相关SSL/TLS相关方法，以使用客户端使用标准的TLSv1.1协议进行握手、通讯；
 2. *SSL_CTX_check_enc_private_key()、SSL_check_enc_private_key()、SSL_use_enc_PrivateKey()、SSL_use_enc_PrivateKey_ASN1()、SSL_CTX_use_enc_PrivateKey()、SSL_CTX_use_enc_PrivateKey_ASN1()、SSL_use_enc_PrivateKey_file()、SSL_CTX_use_enc_PrivateKey_file()*
 为支持国密双证书体系而添加的函数。
